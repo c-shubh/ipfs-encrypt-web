@@ -1,6 +1,13 @@
 import "@/styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Head from "next/head";
+
+const config = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
+
+export const theme = extendTheme({ config });
 
 export default function App({ Component, pageProps }) {
   return (
@@ -10,7 +17,7 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>IPFS Encrypt</title>
       </Head>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
     </>
