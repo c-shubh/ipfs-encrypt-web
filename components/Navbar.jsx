@@ -1,4 +1,4 @@
-import { Box, Button, Image, Link, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Image, Link, Stack, StackDivider, Text } from "@chakra-ui/react";
 export default function Navbar() {
   return (
     <Stack
@@ -10,7 +10,12 @@ export default function Navbar() {
       justifyContent={"space-between"}
     >
       <NavbarLogo />
-      <Stack direction={"row"} alignItems={"center"} spacing={"4"}>
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        spacing={"4"}
+        divider={<StackDivider height={"8"} sx={{ marginY: "auto !important" }} />}
+      >
         <Link href="#">Home</Link>
         <Link href="#">Section 1</Link>
         <Link href="#">Section 2</Link>
