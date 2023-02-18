@@ -21,7 +21,7 @@ export default function Navbar() {
         <Link href="#">Section 2</Link>
         <Link href="#">Section 3</Link>
         <Button colorScheme="blue" size={"sm"}>
-          Login
+          Get Started
         </Button>
       </Stack>
     </Stack>

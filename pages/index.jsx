@@ -1,10 +1,14 @@
 import Navbar from "@/components/Navbar";
-import { Box } from "@chakra-ui/react";
+import SignIn from "@/components/SignIn";
+import { Flex } from "@chakra-ui/react";
 
 export default function Home() {
   return (
-    <Box>
+    <Flex height={"full"} direction={"column"}>
       <Navbar />
-    </Box>
+      <Flex direction={"column"} grow={"1"} justifyContent={"center"} alignItems={"center"}>
+        <SignIn />
+      </Flex>
+    </Flex>
   );
 }
