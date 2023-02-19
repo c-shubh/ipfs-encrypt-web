@@ -29,7 +29,9 @@ const rejectStyle = {
 
 export default function StyledDropzone() {
   /* https://react-dropzone.js.org/#section-styling-dropzone */
-  const { getRootProps, getInputProps, acceptedFiles, isDragAccept, isDragReject } = useDropzone();
+  const { getRootProps, getInputProps, acceptedFiles, isDragAccept, isDragReject } = useDropzone({
+    noDrag: true,
+  });
 
   const files = acceptedFiles.map((file) => file);
 
@@ -45,8 +47,17 @@ export default function StyledDropzone() {
   return (
     <Stack>
       <Flex {...getRootProps()} {...style} _focus={{ borderColor: "blue.300" }}>
-        <Input {...getInputProps()} />
-        <Text>Drag &lsquo;n&rsquo; drop some files here, or click to select files</Text>
+        <Input
+          name="files"
+          {...getInputProps()}
+          required
+          /* Below is fix for https://stackoverflow.com/questions/22148080/an-invalid-form-control-with-name-is-not-focusable */
+          width={"1px"}
+          height={"1px"}
+          style={{ display: "block" }}
+          zIndex={"-1"}
+        />
+        <Text>Click to select files</Text>
       </Flex>
       <FileViewDrawer files={files} />
     </Stack>

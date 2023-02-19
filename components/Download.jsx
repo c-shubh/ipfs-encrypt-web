@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Flex,
   Heading,
   Icon,
   Image,
@@ -15,35 +16,67 @@ import { GoCloudDownload } from "react-icons/go";
 import PasswordInput from "./PasswordInput";
 
 export default function Download() {
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    /* Get form values */
+    const cid = e.target.cid.value;
+    const password = e.target.password.value;
+    const token = e.target.token.value;
+
+    /* Send post request */
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API}/download`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cid,
+          password,
+          token,
+        }),
+      });
+      const blob = await response.blob();
+      const file = window.URL.createObjectURL(blob);
+      window.location.assign(file);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
   return (
-    <Card width={"lg"}>
-      <CardHeader>
-        <Heading as={"h2"} textAlign={"center"}>
-          Download files
-        </Heading>
-      </CardHeader>
-      <CardBody>
-        <Stack spacing={4}>
-          <InputGroup>
-            <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
-              CID
-            </InputLeftAddon>
-            <Input type="text" placeholder="IPFS Content Identfier" />
-          </InputGroup>
-          <PasswordInput />
-          <InputGroup>
-            <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
-              Token
-            </InputLeftAddon>
-            <Input type="text" placeholder="Your IPFS token" />
-          </InputGroup>
-          <Button leftIcon={<Icon as={GoCloudDownload} />}>
-            Download from
-            <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
-            IPFS
-          </Button>
-        </Stack>
-      </CardBody>
-    </Card>
+    <Flex direction={"column"} grow={"1"} justifyContent={"center"} alignItems={"center"}>
+      <Card width={"lg"}>
+        <CardHeader>
+          <Heading as={"h2"} textAlign={"center"}>
+            Download files
+          </Heading>
+        </CardHeader>
+        <CardBody>
+          <form onSubmit={handleFormSubmit}>
+            <Stack spacing={4}>
+              <InputGroup>
+                <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
+                  CID
+                </InputLeftAddon>
+                <Input name="cid" type="text" placeholder="IPFS Content Identfier" required />
+              </InputGroup>
+              <PasswordInput />
+              <InputGroup>
+                <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
+                  Token
+                </InputLeftAddon>
+                <Input name="token" type="text" placeholder="Your Web3 Storage token" required />
+              </InputGroup>
+              <Button type="submit" leftIcon={<Icon as={GoCloudDownload} />}>
+                Download from
+                <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
+                IPFS
+              </Button>
+            </Stack>
+          </form>
+        </CardBody>
+      </Card>
+    </Flex>
   );
 }

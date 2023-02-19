@@ -11,7 +11,7 @@ export default function PasswordInput() {
       <InputLeftAddon width="24" textAlign={"center"}>
         Password
       </InputLeftAddon>
-      <Input pr="4.5rem" type={show ? "text" : "password"} placeholder="Decryption password" />
+      <Input name="password" pr="4.5rem" type={show ? "text" : "password"} placeholder="Decryption password" required />
       <InputRightElement width="4.5rem">
         <Button h="1.75rem" size="sm" onClick={handleClick}>
           {show ? "Hide" : "Show"}
