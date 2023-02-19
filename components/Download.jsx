@@ -28,14 +28,14 @@ export default function Download() {
             <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
               CID
             </InputLeftAddon>
-            <Input type="text" placeholder="IPFS Content Identfier" />
+            <Input type="text" placeholder="IPFS Content Identfier" required />
           </InputGroup>
           <PasswordInput />
           <InputGroup>
             <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
               Token
             </InputLeftAddon>
-            <Input type="text" placeholder="Your IPFS token" />
+            <Input name="token" type="text" placeholder="Your Web3 Storage token" required />
           </InputGroup>
           <Button leftIcon={<Icon as={GoCloudDownload} />}>
             Download from
