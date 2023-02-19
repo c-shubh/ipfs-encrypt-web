@@ -17,9 +17,7 @@ export default function Navbar() {
         divider={<StackDivider height={"8"} sx={{ marginY: "auto !important" }} />}
       >
         <Link href="#">Home</Link>
-        <Link href="#">Section 1</Link>
-        <Link href="#">Section 2</Link>
-        <Link href="#">Section 3</Link>
+        <Link href="https://github.com/0xVikasRushi/ipfs-encrypt#readme">Docs</Link>
         <Button colorScheme="blue" size={"sm"}>
           Get Started
         </Button>
