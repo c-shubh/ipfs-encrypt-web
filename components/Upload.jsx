@@ -1,5 +1,4 @@
 import ManualCloseModal from "@/components/ManualCloseModal";
-import StyledDropzone from "@/components/StyledDropzone";
 import {
   Button,
   Card,
@@ -13,7 +12,9 @@ import {
   InputLeftAddon,
   Stack,
   useDisclosure,
+  Spinner,
 } from "@chakra-ui/react";
+import React from "react";
 import { useState } from "react";
 import { GoCloudUpload } from "react-icons/go";
 import PasswordInput from "./PasswordInput";
@@ -22,6 +23,7 @@ export default function Upload() {
   /* for CID display modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [cid, setCid] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -39,6 +41,7 @@ export default function Upload() {
       formData.append("files", file);
       i++;
     }
+    setLoading(true);
 
     /* Send post request */
     try {
@@ -51,6 +54,7 @@ export default function Upload() {
       if (responseJson.cid) {
         setCid(responseJson.cid);
         onOpen();
+        setLoading(false);
         return;
       }
     } catch (error) {
@@ -68,6 +72,7 @@ export default function Upload() {
       <CardBody>
         <form onSubmit={handleFormSubmit}>
           <Stack spacing={4}>
+            {" "}
             <StyledDropzone />
             <PasswordInput />
             <InputGroup>
@@ -80,6 +85,7 @@ export default function Upload() {
               Upload to
               <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
               IPFS
+              {loading && <Spinner size="md" width={"6"} ms={"2"} me={"1"} />}
             </Button>
             <ManualCloseModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} cid={cid} />
           </Stack>

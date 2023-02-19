@@ -11,11 +11,15 @@ import {
   InputGroup,
   InputLeftAddon,
   Stack,
+  Spinner,
 } from "@chakra-ui/react";
+import React from "react";
+import { useState } from "react";
 import { GoCloudDownload } from "react-icons/go";
 import PasswordInput from "./PasswordInput";
 
 export default function Download() {
+  const [loading, setLoading] = useState(false);
   async function handleFormSubmit(e) {
     e.preventDefault();
     /* Get form values */
@@ -24,6 +28,7 @@ export default function Download() {
     const token = e.target.token.value;
 
     /* Send post request */
+    setLoading(true);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API}/download`, {
         method: "POST",
@@ -38,6 +43,7 @@ export default function Download() {
       });
       const blob = await response.blob();
       const file = window.URL.createObjectURL(blob);
+      setLoading(false);
       window.location.assign(file);
     } catch (error) {
       console.error("Error:", error);
@@ -69,9 +75,10 @@ export default function Download() {
                 <Input name="token" type="text" placeholder="Your Web3 Storage token" required />
               </InputGroup>
               <Button type="submit" leftIcon={<Icon as={GoCloudDownload} />}>
-                Download from
+                Download{loading && <>ing </>} from
                 <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
                 IPFS
+                {loading && <Spinner size="md" width={"6"} ms={"2"} me={"1"} />}
               </Button>
             </Stack>
           </form>
