@@ -13,6 +13,7 @@ export default function SignIn(props) {
               Sign in with <Text as={"b"}>Arcana</Text>
             </Text>
           </Stack>
+
           <Button onClick={props.actionF}>Sign in</Button>
         </Stack>
       </CardBody>
