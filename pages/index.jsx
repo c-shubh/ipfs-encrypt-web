@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import SignIn from "@/components/SignIn";
+import Upload from "@/components/Upload";
 import { Flex } from "@chakra-ui/react";
 
 export default function Home() {
@@ -7,7 +8,8 @@ export default function Home() {
     <Flex height={"full"} direction={"column"}>
       <Navbar />
       <Flex direction={"column"} grow={"1"} justifyContent={"center"} alignItems={"center"}>
-        <SignIn />
+        {/* <SignIn /> */}
+        <Upload />
       </Flex>
     </Flex>
   );
