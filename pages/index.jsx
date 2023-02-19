@@ -4,7 +4,7 @@ import Upload from "@/components/Upload";
 import React from "react";
 import Download from "@/components/Download";
 import { Flex } from "@chakra-ui/react";
-import { useArcanaAuth } from "./auth/useArcanaAuth";
+import { useArcanaAuth } from "../auth/useArcanaAuth";
 import Loader from "../components/loader";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
       provider.removeListener("connect", onConnect);
     };
   }, [provider]);
-
+  // console.log("wo" + process.env.NEXT_PUBLIC_AUTHTOKEN);
   return (
     <Flex height={"full"} direction={"column"}>
       <Navbar />

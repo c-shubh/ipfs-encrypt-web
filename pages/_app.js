@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Head from "next/head";
-import { getAuth } from "./auth/getArcanaAuth";
-import { ProvideAuth } from "./auth/useArcanaAuth";
+import { getAuth } from "../auth/getArcanaAuth";
+import { ProvideAuth } from "../auth/useArcanaAuth";
 
 const config = {
   initialColorMode: "dark",
