@@ -1,4 +1,3 @@
-import StyledDropzone from "@/components/StyledDropzone";
 import {
   Button,
   Card,
@@ -12,20 +11,25 @@ import {
   InputLeftAddon,
   Stack,
 } from "@chakra-ui/react";
-import { GoCloudUpload } from "react-icons/go";
+import { GoCloudDownload } from "react-icons/go";
 import PasswordInput from "./PasswordInput";
 
-export default function Upload() {
+export default function Download() {
   return (
     <Card width={"lg"}>
       <CardHeader>
         <Heading as={"h2"} textAlign={"center"}>
-          Upload files
+          Download files
         </Heading>
       </CardHeader>
       <CardBody>
         <Stack spacing={4}>
-          <StyledDropzone />
+          <InputGroup>
+            <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
+              CID
+            </InputLeftAddon>
+            <Input type="text" placeholder="IPFS Content Identfier" />
+          </InputGroup>
           <PasswordInput />
           <InputGroup>
             <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
@@ -33,8 +37,8 @@ export default function Upload() {
             </InputLeftAddon>
             <Input type="text" placeholder="Your IPFS token" />
           </InputGroup>
-          <Button leftIcon={<Icon as={GoCloudUpload} />}>
-            Upload to
+          <Button leftIcon={<Icon as={GoCloudDownload} />}>
+            Download from
             <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
             IPFS
           </Button>
