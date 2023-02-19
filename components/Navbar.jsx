@@ -1,5 +1,6 @@
-import { Box, Button, Image, Link, Stack, StackDivider, Text } from "@chakra-ui/react";
-export default function Navbar() {
+import { pages } from "@/pages";
+import { Box, Image, Link, Stack, StackDivider, Text } from "@chakra-ui/react";
+export default function Navbar({ setCurrentPage }) {
   return (
     <Stack
       bg={"blackAlpha.500"}
@@ -18,9 +19,12 @@ export default function Navbar() {
       >
         <Link href="#">Home</Link>
         <Link href="https://github.com/0xVikasRushi/ipfs-encrypt#readme">Docs</Link>
-        <Button colorScheme="blue" size={"sm"}>
-          Get Started
-        </Button>
+        <Link href="#" onClick={() => setCurrentPage(pages.upload)}>
+          Upload
+        </Link>
+        <Link href="#" onClick={() => setCurrentPage(pages.download)}>
+          Download
+        </Link>
       </Stack>
     </Stack>
   );
