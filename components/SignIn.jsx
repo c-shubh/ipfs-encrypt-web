@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Heading, Image, Stack, Text } from "@chakra-ui/react";
 
-export default function SignIn() {
+export default function SignIn(props) {
   return (
     <Card width={"96"}>
       <CardBody>
@@ -10,12 +10,10 @@ export default function SignIn() {
               Welcome
             </Heading>
             <Text textAlign={"center"} fontSize={"md"}>
-              One click sign in with <Text as={"b"}>MetaMask</Text>
+              Sign in with <Text as={"b"}>Arcana</Text>
             </Text>
           </Stack>
-          <Button leftIcon={<Image src="metamask.svg" alt="MetaMask icon" width={"30px"} height={"30px"} />}>
-            Sign in with Metamask
-          </Button>
+          <Button onClick={props.actionF}>Sign in</Button>
         </Stack>
       </CardBody>
     </Card>
