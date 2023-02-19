@@ -19,7 +19,7 @@ export default function ManualClose({ isOpen, onOpen, onClose, cid }) {
     <>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent width={{ base: "90%" }}>
           <ModalHeader>Content ID</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -27,7 +27,7 @@ export default function ManualClose({ isOpen, onOpen, onClose, cid }) {
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onCopy}>
-              {hasCopied ? "Copied!" : "Copy to clipboard"}
+              {hasCopied ? "Copied" : "Copy"}
             </Button>
             <Button onClick={onClose}>Close</Button>
           </ModalFooter>

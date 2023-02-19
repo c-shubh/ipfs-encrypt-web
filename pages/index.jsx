@@ -1,4 +1,5 @@
 import Download from "@/components/Download";
+import Home from "@/components/Home";
 import Navbar from "@/components/Navbar";
 import SignIn from "@/components/SignIn";
 import Upload from "@/components/Upload";
@@ -12,10 +13,6 @@ export const pages = Object.freeze({
   upload: "upload",
   download: "download",
 });
-
-function Home() {
-  return <></>;
-}
 
 function pageToComponent(page) {
   switch (page) {
@@ -31,7 +28,7 @@ function pageToComponent(page) {
 }
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState(pages.upload);
+  const [currentPage, setCurrentPage] = useState(pages.home);
 
   const { user, connect, isLoggedIn, loading, loginWithSocial, provider } = useArcanaAuth();
   const onConnectClick = async () => {
@@ -54,14 +51,10 @@ export default function App() {
   return (
     <Flex height={"full"} direction={"column"}>
       <Navbar setCurrentPage={setCurrentPage} />
-      <Flex direction={"column"} grow={"1"} justifyContent={"center"} alignItems={"center"}>
-        {pageToComponent(currentPage)}
-        {/* <SignIn /> */}
-        {/* <Upload /> */}
-        {/* {loading && <Loader secondaryColor="#101010" strokeColor="#101010" />}
+      {pageToComponent(currentPage)}
+      {/* {loading && <Loader secondaryColor="#101010" strokeColor="#101010" />}
         {!loading && !isLoggedIn && <SignIn actionF={onConnectClick} />}
         {!loading && isLoggedIn && <Download />} */}
-      </Flex>
     </Flex>
   );
 }

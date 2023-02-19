@@ -5,17 +5,17 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Flex,
   Heading,
   Icon,
   Image,
   Input,
   InputGroup,
   InputLeftAddon,
+  Spinner,
   Stack,
   useDisclosure,
-  Spinner,
 } from "@chakra-ui/react";
-import React from "react";
 import { useState } from "react";
 import { GoCloudUpload } from "react-icons/go";
 import PasswordInput from "./PasswordInput";
@@ -64,34 +64,36 @@ export default function Upload() {
   }
 
   return (
-    <Card width={"lg"}>
-      <CardHeader>
-        <Heading as={"h2"} textAlign={"center"}>
-          Upload files
-        </Heading>
-      </CardHeader>
-      <CardBody>
-        <form onSubmit={handleFormSubmit}>
-          <Stack spacing={4}>
-            {" "}
-            <StyledDropzone />
-            <PasswordInput />
-            <InputGroup>
-              <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
-                Token
-              </InputLeftAddon>
-              <Input name="token" type="text" placeholder="Your Web3 Storage token" required />
-            </InputGroup>
-            <Button type="submit" leftIcon={<Icon as={GoCloudUpload} />}>
-              Upload to
-              <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
-              IPFS
-              {loading && <Spinner size="md" width={"6"} ms={"2"} me={"1"} />}
-            </Button>
-            <ManualCloseModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} cid={cid} />
-          </Stack>
-        </form>
-      </CardBody>
-    </Card>
+    <Flex direction={"column"} grow={"1"} justifyContent={"center"} alignItems={"center"}>
+      <Card width={{ base: "85%", sm: "96", md: "md", lg: "lg" }}>
+        <CardHeader>
+          <Heading as={"h2"} textAlign={"center"}>
+            Upload files
+          </Heading>
+        </CardHeader>
+        <CardBody>
+          <form onSubmit={handleFormSubmit}>
+            <Stack spacing={4}>
+              {" "}
+              <StyledDropzone />
+              <PasswordInput />
+              <InputGroup>
+                <InputLeftAddon width="24" textAlign={"center"} justifyContent={"center"}>
+                  Token
+                </InputLeftAddon>
+                <Input name="token" type="text" placeholder="Your Web3 Storage token" required />
+              </InputGroup>
+              <Button type="submit" leftIcon={<Icon as={GoCloudUpload} />}>
+                Upload to
+                <Image src="ipfs.svg" alt="" width={"6"} ms={"2"} me={"1"} />
+                IPFS
+                {loading && <Spinner size="md" width={"6"} ms={"2"} me={"1"} />}
+              </Button>
+              <ManualCloseModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} cid={cid} />
+            </Stack>
+          </form>
+        </CardBody>
+      </Card>
+    </Flex>
   );
 }

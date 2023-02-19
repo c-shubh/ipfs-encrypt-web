@@ -10,10 +10,9 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
-  Stack,
   Spinner,
+  Stack
 } from "@chakra-ui/react";
-import React from "react";
 import { useState } from "react";
 import { GoCloudDownload } from "react-icons/go";
 import PasswordInput from "./PasswordInput";
@@ -52,7 +51,7 @@ export default function Download() {
 
   return (
     <Flex direction={"column"} grow={"1"} justifyContent={"center"} alignItems={"center"}>
-      <Card width={"lg"}>
+      <Card width={{ base: "85%", sm: "96", md: "md", lg: "lg" }}>
         <CardHeader>
           <Heading as={"h2"} textAlign={"center"}>
             Download files
