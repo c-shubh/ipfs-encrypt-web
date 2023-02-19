@@ -1,4 +1,5 @@
 import ManualCloseModal from "@/components/ManualCloseModal";
+import StyledDropzone from "@/components/StyledDropzone";
 import {
   Button,
   Card,
